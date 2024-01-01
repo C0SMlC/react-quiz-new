@@ -1,5 +1,19 @@
 import { useReducer } from "react";
 
+/**
+ * Reducer function that updates the state based on the given action.
+ * @param {object} state - The current state object.
+ * @param {object} action - The action object that contains the type and payload.
+ * @return {object} The updated state object.
+ */
+
+// const [step, setStep] = useState(1);
+
+const initialState = {
+  count: 0,
+  step: 1,
+};
+
 function reducer(state, action) {
   switch (action.type) {
     case "inc":
@@ -11,7 +25,7 @@ function reducer(state, action) {
     case "setStep":
       return { ...state, step: action.payload };
     case "reset":
-      return { step: 1, count: 0 };
+      return initialState;
     default:
       return state;
   }
@@ -19,12 +33,6 @@ function reducer(state, action) {
 
 function DateCounter() {
   // const [count, setCount] = useState(0);
-  // const [step, setStep] = useState(1);
-
-  const initialState = {
-    count: 0,
-    step: 1,
-  };
   const [state, dispatch] = useReducer(reducer, initialState);
   const { count, step } = state;
 
